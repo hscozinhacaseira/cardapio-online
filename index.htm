@@ -5,273 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HS Cozinha Caseira - Cardápio</title>
     <style>
-        /* Estilos Gerais */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-        }
-
-        /* Cabeçalho */
-        header {
-            text-align: center;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #dee2e6;
-            margin-bottom: 20px;
-        }
-
-        header h1 {
-            color: #4CAF50; /* Verde principal */
-            font-size: 2.5em;
-            margin: 0;
-        }
-        
-        header p {
-            color: #6c757d;
-            font-size: 1.1em;
-        }
-
-        /* Filtros e Opções */
-        .menu-options {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .menu-options button {
-            padding: 12px 25px;
-            margin: 5px;
-            border: 1px solid #4CAF50;
-            border-radius: 25px;
-            background-color: #fff;
-            color: #4CAF50;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1em;
-            font-weight: 500;
-        }
-
-        .menu-options button:hover, .menu-options button.active {
-            background-color: #4CAF50;
-            color: #fff;
-        }
-
-        /* Grid do Cardápio */
-        #menu-items {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        
-        .menu-item-card {
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.2s;
-        }
-
-        .menu-item-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .menu-item-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .item-content {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .item-content h3 {
-            margin: 0 0 10px;
-            color: #343a40;
-        }
-
-        .item-content p {
-            color: #6c757d;
-            flex-grow: 1;
-            margin-bottom: 15px;
-        }
-        
-        .price {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #28a745;
-        }
-
-        .stock-info {
-            font-size: 0.9em;
-            padding: 3px 8px;
-            border-radius: 10px;
-        }
-        
-        .stock-info.available {
-            background-color: #d4edda;
-            color: #155724;
-        }
-        
-        .stock-info.on-order {
-            background-color: #fff3cd;
-            color: #856404;
-        }
-
-        .item-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .add-to-cart-btn {
-            width: 100%;
-            padding: 12px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: bold;
-            transition: background-color 0.2s;
-        }
-
-        .add-to-cart-btn:hover {
-            background-color: #218838;
-        }
-        
-        /* Seção do Pedido e Formulário */
-        .order-and-form-section {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            margin-top: 40px;
-        }
-        
-        .order-and-form-section h2 {
-            text-align: center;
-            color: #4CAF50;
-            margin-top: 0;
-        }
-
-        #order-list .order-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        #order-total {
-            text-align: right;
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-        
-        .form-section label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .form-section input, .form-section textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box; /* Adicionado para corrigir padding */
-        }
-        
-        .payment-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .payment-options button {
-            flex-grow: 1;
-            padding: 10px 15px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .payment-options button.selected {
-            background-color: #4CAF50;
-            color: #fff;
-            border-color: #4CAF50;
-        }
-        
-        #pix-info, #troco-info {
-            background-color: #e9ecef;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        
-        #submit-order {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            margin-top: 20px;
-            background-color: #25d366;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.2em;
-            font-weight: bold;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        /* Pop-up de Carregamento */
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.3s, visibility 0.3s;
-        }
-        
-        .popup-overlay.show {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .popup {
-            background-color: #fff;
-            padding: 30px 40px;
-            border-radius: 8px;
-            text-align: center;
-        }
-
+        body{font-family:'Segoe UI',sans-serif;background-color:#f8f9fa;margin:0;color:#333}.container{max-width:1200px;margin:20px auto;padding:0 15px}header{text-align:center;padding-bottom:20px;border-bottom:2px solid #dee2e6;margin-bottom:20px}header h1{color:#4CAF50;font-size:2.5em;margin:0}header p{color:#6c757d;font-size:1.1em}.menu-options{text-align:center;margin-bottom:30px;padding:10px 0;background:#fff;border-radius:25px;box-shadow:0 2px 10px rgba(0,0,0,0.05)}.menu-options button{padding:10px 20px;margin:5px;border:1px solid #4CAF50;border-radius:20px;background-color:#fff;color:#4CAF50;cursor:pointer;transition:all .3s ease;font-size:1em}.menu-options button:hover,.menu-options button.active{background-color:#4CAF50;color:#fff}#menu-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:25px}.menu-item-card{background-color:#fff;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,0.08);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s}.menu-item-card:hover{transform:translateY(-5px)}.menu-item-card img{width:100%;height:200px;object-fit:cover;border-bottom:1px solid #eee}.item-content{padding:20px;flex-grow:1;display:flex;flex-direction:column}.item-content h3{margin:0 0 10px;color:#343a40}.item-content p{color:#6c757d;flex-grow:1;margin-bottom:15px;font-size:.9em}.price{font-size:1.5em;font-weight:700;color:#28a745}.stock-info{font-size:.9em;padding:3px 8px;border-radius:10px}.stock-info.available{background-color:#d4edda;color:#155724}.stock-info.on-order{background-color:#fff3cd;color:#856404}.item-footer{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.item-personalization{width:100%;padding:8px;border:1px solid #ddd;border-radius:5px;margin-bottom:15px;font-size:.9em}.quantity-control{display:flex;align-items:center;gap:10px;margin-bottom:15px}.quantity-control button{background-color:#eee;border:none;border-radius:50%;width:30px;height:30px;font-size:1.2em;cursor:pointer}.quantity-control span{font-size:1.2em;font-weight:700}.add-to-cart-btn{width:100%;padding:12px;background-color:#28a745;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:1em;font-weight:700;transition:background-color .2s}.add-to-cart-btn:hover{background-color:#218838}.order-and-form-section{background-color:#fff;padding:30px;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,0.08);margin-top:40px}.order-and-form-section h2{text-align:center;color:#4CAF50;margin-top:0}#order-list .order-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eee}.order-item-details{font-size:.9em}.order-item-note{font-size:.8em;color:#888;padding-left:15px}#order-total{text-align:right;font-size:1.5em;font-weight:700;margin-top:20px}.form-section label{display:block;margin-bottom:5px;font-weight:700}.form-section input,.form-section textarea{width:100%;padding:10px;margin-bottom:15px;border:1px solid #ccc;border-radius:4px;box-sizing:border-box}.payment-options{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:15px}.payment-options button{flex-grow:1;padding:10px 15px;border:1px solid #ccc;background-color:#f9f9f9;border-radius:5px;cursor:pointer}.payment-options button.selected{background-color:#4CAF50;color:#fff;border-color:#4CAF50}#pix-info,#troco-info{background-color:#e9ecef;padding:15px;border-radius:5px;margin-top:10px}#submit-order{display:block;width:100%;padding:15px;margin-top:20px;background-color:#25d366;color:#fff;border:none;border-radius:8px;font-size:1.2em;font-weight:700;cursor:pointer;text-align:center}.popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.6);display:flex;justify-content:center;align-items:center;z-index:1000;visibility:hidden;opacity:0;transition:opacity .3s,visibility .3s}.popup-overlay.show{visibility:visible;opacity:1}.popup{background-color:#fff;padding:30px 40px;border-radius:8px;text-align:center}
     </style>
 </head>
 <body>
@@ -279,18 +13,16 @@
     <div class="container">
         <header>
             <h1>HS Cozinha Caseira</h1>
-            <p>Marmitinhas saudáveis e congeladas - Produtos 100% Naturais. </p>
-            <p style="font-size: 0.8em; color: #888;">*Fotos meramente ilustrativas. </p>
+            <p>Marmitinhas saudáveis e congeladas - Produtos 100% Naturais.</p>
+            <p style="font-size: 0.8em; color: #888;">*Fotos meramente ilustrativas.</p>
         </header>
 
         <div class="menu-options">
-            <button id="btn-all-items" class="active">Todos os Itens</button>
+            <button id="btn-all-items" class="active" data-category="all">Todos os Itens</button>
             <button id="btn-pronta-entrega">Pronta Entrega</button>
-            <button data-category="carnes">Carnes</button>
-            <button data-category="frango">Frango</button>
-            <button data-category="massas">Massas</button>
-            <button data-category="caldos">Caldos</button>
         </div>
+        <div class="menu-options" id="category-filters">
+            </div>
 
         <section id="menu-items">
             <p>Carregando cardápio...</p>
@@ -299,144 +31,100 @@
         <section class="order-and-form-section">
             <div class="order-section">
                 <h2>Meu Pedido</h2>
-                <div id="order-list">
-                    <p>Seu carrinho está vazio.</p>
-                </div>
-                <div id="order-total">
-                    <span>Total: R$ 0,00</span>
-                </div>
+                <div id="order-list"><p>Seu carrinho está vazio.</p></div>
+                <div id="order-total"><span>Total: R$ 0,00</span></div>
             </div>
-
             <hr style="margin: 30px 0;">
-
             <div class="form-section">
                 <h2>Dados para Entrega e Pagamento</h2>
                 <form id="delivery-form" onsubmit="return false;">
                     <label for="nome">Nome Completo *</label>
                     <input type="text" id="nome" required>
-
                     <label for="endereco">Endereço (Rua, Av.) *</label>
                     <input type="text" id="endereco" required>
-
                     <label for="complemento">Complemento (Nº, Apto, Bloco) *</label>
                     <input type="text" id="complemento" required>
-
                     <label for="telefone">Telefone Celular (com DDD) *</label>
                     <input type="tel" id="telefone" placeholder="11999838162" required>
-
-                    <label for="observacoes">Observações Gerais (Opcional)</label>
-                    <textarea id="observacoes" maxlength="150" placeholder="Ex: Deixar na portaria, etc."></textarea>
-                    
-                    <label>Forma de Pagamento (escolha até 2)</label>
+                    <label for="observacoes">Observações Gerais do Pedido (Opcional)</label>
+                    <textarea id="observacoes" maxlength="150" placeholder="Ex: Deixar na portaria..."></textarea>
+                    <label>Forma de Pagamento *</label>
                     <div class="payment-options">
                         <button type="button" data-payment="Cartão de Débito">Débito</button>
                         <button type="button" data-payment="Cartão de Crédito">Crédito</button>
                         <button type="button" data-payment="PIX">PIX</button>
                         <button type="button" data-payment="Dinheiro">Dinheiro</button>
                     </div>
-
-                    <div id="pix-info" style="display: none;">
-                        <p><strong>Chave PIX (Celular):</strong> 11999838162</p>
-                    </div>
-
+                    <div id="pix-info" style="display: none;"><p><strong>Chave PIX (Celular):</strong> 11999838162</p></div>
                     <div id="troco-info" style="display: none;">
                         <label for="valor-dinheiro">Pagar com valor de:</label>
                         <input type="number" id="valor-dinheiro" min="0" placeholder="Ex: 50.00">
-                        <p id="troco-display"></p>
                     </div>
-
-                    <button id="submit-order">Finalizar e Enviar Pedido</button>
+                    <button id="submit-order">Finalizar e Enviar Pedido via WhatsApp</button>
                 </form>
             </div>
         </section>
     </div>
 
-    <div id="stock-popup" class="popup-overlay">
-        <div class="popup">
-            <p id="popup-message">Aguarde uns instantes, estamos verificando o estoque...</p>
-        </div>
-    </div>
+    <div id="loading-popup" class="popup-overlay"><div class="popup"><p>Carregando...</p></div></div>
     
     <script>
-    // URL da sua API do Google Apps Script
-    const googleAppsScriptUrl = "https://script.google.com/macros/s/AKfycbyjpObccv57S18ER16u5C_gy8A1d85FWoiy4txbLCYEThNqAELbq6nFJjIsgr4UMA6QAw/exec";
+    const googleAppsScriptUrl = "https://script.google.com/macros/s/AKfycbyjpObccv57S18ER16u5C_gy8A1d85FWoiy4txbLCYEThNqAELbq6nFJjIsgr4UMA6QAw/exec"; // <-- SUBSTITUA PELA URL DA SUA NOVA IMPLANTAÇÃO
     const whatsappNumber = "5511999838162";
     const priceUnit = 22.90;
     const priceCombo = 21.90;
     const comboItems = 5;
 
-    let menuData = []; // Armazena todos os itens do cardápio
-    let cart = []; // Armazena os itens no carrinho
+    let menuData = [];
+    let cart = [];
 
-    // Função para buscar os dados do cardápio
     async function fetchMenuData() {
-        const popup = document.getElementById('stock-popup');
-        popup.classList.add('show');
-        
+        document.getElementById('loading-popup').classList.add('show');
         try {
-            // Simulação de categorias. O ideal é que isso venha da sua planilha.
-            const menuItemsFromSpec = [
-                { name: "Lasanha de Frango", description: "Frango cremoso desfiado e muçarela.", category: "massas" },
-                { name: "Lasanha de Berinjela", description: "Molho a bolonhesa.", category: "massas" },
-                { name: "Strogonoff de Frango", description: "Arroz e batata sauté.", category: "frango" },
-                { name: "Picadinho Bovino", description: "Arroz e feijão.", category: "carnes" },
-                { name: "Filé de Sobrecoxa Assada", description: "Arroz com legumes e legumes no vapor.", category: "frango" },
-                { name: "Carne de Panela", description: "Purê de abóbora e mix legumes assados.", category: "carnes" },
-                { name: "Carne Moída c/ Purê Mandioquinha", description: "Purê de mandioquinha/batata e legumes no vapor.", category: "carnes" },
-                { name: "Filé de Frango Grelhado", description: "Molho branco, queijo, arroz integral e legumes assados.", category: "frango" },
-                { name: "Galinhada Fit", description: "Arroz integral e cubos de frango.", category: "frango" },
-                { name: "Filé de Tilápia Grelhada", description: "Arroz integral, brócolis e cenoura no vapor.", category: "peixes" },
-                { name: "Mini panqueca de Frango", description: "Molho ao sugo e queijo - Massa de couve, beterraba ou cenoura.", category: "massas" },
-                { name: "Caldo de Abóbora c/ Carne Seca", description: "Alho poró e carne seca desfiada (caseira).", category: "caldos" },
-                { name: "Caldo Verde", description: "Batata, calabresa, bacon e couve verde.", category: "caldos" }
-            ];
-
-            // Aqui faríamos a chamada real para a API
-            // const response = await fetch(`${googleAppsScriptUrl}?action=getMenu`);
-            // const stockData = await response.json();
+            const response = await fetch(`${googleAppsScriptUrl}?action=getMenu`);
+            if (!response.ok) throw new Error('Falha na resposta da rede.');
             
-            // Simulação de dados de estoque para demonstração
-            const stockData = [
-                { NomeDoItem: "Lasanha de Frango", Estoque: 5 },
-                { NomeDoItem: "Strogonoff de Frango", Estoque: 0 },
-                { NomeDoItem: "Carne de Panela", Estoque: 8 },
-                { NomeDoItem: "Caldo Verde", Estoque: 10 }
-            ];
+            const data = await response.json();
+            if (data.error) throw new Error(data.message);
 
-            menuData = menuItemsFromSpec.map(item => {
-                const stockInfo = stockData.find(s => s.NomeDoItem === item.name);
-                return {
-                    ...item,
-                    stock: stockInfo ? stockInfo.Estoque : 0,
-                    // Adicione um link de imagem para cada prato
-                    imageUrl: `https://via.placeholder.com/400x300.png/28a745/FFFFFF?text=${encodeURIComponent(item.name)}`
-                };
-            });
-            
+            menuData = data;
+            renderCategories(menuData);
             renderMenu(menuData);
 
         } catch (error) {
             console.error("Erro ao carregar cardápio:", error);
-            document.getElementById('menu-items').innerHTML = `<p style="color:red;">Não foi possível carregar o cardápio. Tente novamente mais tarde.</p>`;
+            document.getElementById('menu-items').innerHTML = `<p style="color:red;">Não foi possível carregar o cardápio. Verifique se a URL do script está correta e se ele foi implantado corretamente. Erro: ${error.message}</p>`;
         } finally {
-            popup.classList.remove('show');
+            document.getElementById('loading-popup').classList.remove('show');
         }
     }
 
-    // Função para renderizar o cardápio na tela
+    function renderCategories(items) {
+        const categories = [...new Set(items.map(item => item.category).filter(Boolean))];
+        const filtersContainer = document.getElementById('category-filters');
+        filtersContainer.innerHTML = '';
+        categories.forEach(category => {
+            const button = document.createElement('button');
+            button.dataset.category = category;
+            button.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+            filtersContainer.appendChild(button);
+        });
+    }
+
     function renderMenu(itemsToRender) {
         const menuContainer = document.getElementById('menu-items');
         menuContainer.innerHTML = '';
         if (itemsToRender.length === 0) {
-            menuContainer.innerHTML = '<p>Nenhum item encontrado para esta categoria.</p>';
+            menuContainer.innerHTML = '<p>Nenhum item encontrado.</p>';
             return;
         }
 
-        itemsToRender.forEach(item => {
+        itemsToRender.forEach((item, index) => {
             const card = document.createElement('div');
             card.className = 'menu-item-card';
+            const uniqueId = `item-${index}`;
             card.innerHTML = `
-                <img src="${item.imageUrl}" alt="${item.name}">
+                <img src="${item.imageUrl || 'https://via.placeholder.com/400x300.png/CCCCCC/FFFFFF?text=Imagem+Indisponível'}" alt="${item.name}">
                 <div class="item-content">
                     <h3>${item.name}</h3>
                     <p>${item.description}</p>
@@ -446,31 +134,51 @@
                             ${item.stock > 0 ? `${item.stock} em estoque` : 'Por encomenda'}
                         </span>
                     </div>
-                    <button class="add-to-cart-btn" data-name="${item.name}">Adicionar ao Pedido</button>
+                    <input type="text" id="note-${uniqueId}" class="item-personalization" placeholder="Observação (ex: sem cebola)">
+                    <div class="quantity-control">
+                        <button class="quantity-btn" data-action="decrease" data-target="${uniqueId}">-</button>
+                        <span id="quantity-${uniqueId}">1</span>
+                        <button class="quantity-btn" data-action="increase" data-target="${uniqueId}">+</button>
+                    </div>
+                    <button class="add-to-cart-btn" data-id="${uniqueId}" data-name="${item.name}">Adicionar</button>
                 </div>
             `;
             menuContainer.appendChild(card);
         });
-        
-        // Adiciona evento de clique aos botões "Adicionar"
-        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-            button.addEventListener('click', () => addToCart(button.dataset.name));
-        });
     }
-    
-    // Funções do Carrinho
-    function addToCart(itemName) {
-        const itemData = menuData.find(item => item.name === itemName);
-        const itemInCart = cart.find(item => item.name === itemName);
-        
-        if (itemInCart) {
-            itemInCart.quantity++;
+
+    document.getElementById('menu-items').addEventListener('click', function(e) {
+        if (e.target.matches('.quantity-btn')) {
+            const { action, target } = e.target.dataset;
+            const quantityEl = document.getElementById(`quantity-${target}`);
+            let quantity = parseInt(quantityEl.textContent);
+            if (action === 'increase') {
+                quantity++;
+            } else if (action === 'decrease' && quantity > 1) {
+                quantity--;
+            }
+            quantityEl.textContent = quantity;
+        }
+
+        if (e.target.matches('.add-to-cart-btn')) {
+            const { id, name } = e.target.dataset;
+            const quantity = parseInt(document.getElementById(`quantity-${id}`).textContent);
+            const note = document.getElementById(`note-${id}`).value.trim();
+            addToCart(name, quantity, note);
+        }
+    });
+
+    function addToCart(itemName, quantity, note) {
+        const existingItem = cart.find(item => item.name === itemName && item.note === note);
+        if (existingItem) {
+            existingItem.quantity += quantity;
         } else {
-            cart.push({ name: itemName, quantity: 1, stock: itemData.stock });
+            cart.push({ name: itemName, quantity, note });
         }
         updateCartDisplay();
+        alert(`${quantity}x ${itemName} adicionado(s) ao pedido!`);
     }
-    
+
     function updateCartDisplay() {
         const orderList = document.getElementById('order-list');
         const orderTotalEl = document.getElementById('order-total');
@@ -482,159 +190,112 @@
             return;
         }
         
-        let totalItems = 0;
-        let totalPrice = 0;
-
+        let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        
         cart.forEach(item => {
-            totalItems += item.quantity;
             const itemElement = document.createElement('div');
             itemElement.className = 'order-item';
             itemElement.innerHTML = `
-                <span>${item.quantity}x ${item.name}</span>
+                <div class="order-item-details">
+                    <span>${item.quantity}x ${item.name}</span>
+                    ${item.note ? `<div class="order-item-note">Obs: ${item.note}</div>` : ''}
+                </div>
                 <span>R$ ${(item.quantity * priceUnit).toFixed(2)}</span>
             `;
             orderList.appendChild(itemElement);
         });
 
         const useComboPrice = totalItems >= comboItems;
-        totalPrice = useComboPrice ? totalItems * priceCombo : totalItems * priceUnit;
+        const totalPrice = useComboPrice ? totalItems * priceCombo : totalItems * priceUnit;
         
         orderTotalEl.innerHTML = `
             <span>Total: R$ ${totalPrice.toFixed(2)}</span>
             ${useComboPrice ? '<br><small style="color:green;">(Preço de combo aplicado!)</small>' : ''}
         `;
     }
-    
-    // Lógica de Pagamento
-    const paymentButtons = document.querySelectorAll('.payment-options button');
-    let selectedPayments = [];
 
-    paymentButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const paymentMethod = button.dataset.payment;
-
-            if (selectedPayments.includes(paymentMethod)) {
-                // Desselecionar
-                button.classList.remove('selected');
-                selectedPayments = selectedPayments.filter(p => p !== paymentMethod);
-            } else {
-                // Selecionar (limitando a 2)
-                if (selectedPayments.length < 2) {
-                    button.classList.add('selected');
-                    selectedPayments.push(paymentMethod);
-                } else {
-                    alert('Você pode selecionar no máximo 2 formas de pagamento.');
-                }
-            }
-
-            // Exibir campos adicionais
-            document.getElementById('pix-info').style.display = selectedPayments.includes('PIX') ? 'block' : 'none';
-            document.getElementById('troco-info').style.display = selectedPayments.includes('Dinheiro') ? 'block' : 'none';
-        });
-    });
-
-    // Event Listeners dos Filtros
-    document.getElementById('btn-all-items').addEventListener('click', (e) => {
-        document.querySelector('.menu-options button.active').classList.remove('active');
+    function handleFilterClick(e) {
+        if (e.target.tagName !== 'BUTTON') return;
+        
+        document.querySelectorAll('.menu-options button.active').forEach(b => b.classList.remove('active'));
         e.target.classList.add('active');
-        renderMenu(menuData);
-    });
+
+        const category = e.target.dataset.category;
+        if (category) {
+            const items = category === 'all' ? menuData : menuData.filter(item => item.category === category);
+            renderMenu(items);
+        } else { // Botão Pronta Entrega
+            const readyItems = menuData.filter(item => item.stock > 0);
+            renderMenu(readyItems);
+        }
+    }
+
+    document.querySelector('.menu-options').addEventListener('click', handleFilterClick);
+    document.getElementById('category-filters').addEventListener('click', handleFilterClick);
     
-    document.getElementById('btn-pronta-entrega').addEventListener('click', (e) => {
-        document.querySelector('.menu-options button.active').classList.remove('active');
-        e.target.classList.add('active');
-        const readyItems = menuData.filter(item => item.stock > 0);
-        renderMenu(readyItems);
-    });
-    
-    document.querySelectorAll('.menu-options button[data-category]').forEach(button => {
+    document.querySelectorAll('.payment-options button').forEach(button => {
         button.addEventListener('click', (e) => {
-             document.querySelector('.menu-options button.active').classList.remove('active');
-             e.target.classList.add('active');
-             const category = e.target.dataset.category;
-             const filteredItems = menuData.filter(item => item.category === category);
-             renderMenu(filteredItems);
+            e.target.classList.toggle('selected');
+            const paymentType = e.target.dataset.payment;
+            document.getElementById('pix-info').style.display = document.querySelector('[data-payment="PIX"].selected') ? 'block' : 'none';
+            document.getElementById('troco-info').style.display = document.querySelector('[data-payment="Dinheiro"].selected') ? 'block' : 'none';
         });
     });
 
-    // Envio do Pedido
     document.getElementById('submit-order').addEventListener('click', async () => {
-        // Validação do formulário
-        const nome = document.getElementById('nome').value.trim();
-        const endereco = document.getElementById('endereco').value.trim();
-        const complemento = document.getElementById('complemento').value.trim();
-        const telefone = document.getElementById('telefone').value.trim();
-
-        if (!nome || !endereco || !complemento || !telefone) {
-            alert('Por favor, preencha todos os dados de entrega.');
+        const form = document.getElementById('delivery-form');
+        if (!form.checkValidity()) {
+            alert('Por favor, preencha todos os campos obrigatórios (*).');
+            form.reportValidity();
             return;
         }
         if (cart.length === 0) {
             alert('Seu carrinho está vazio.');
             return;
         }
+        const selectedPayments = [...document.querySelectorAll('.payment-options button.selected')].map(b => b.dataset.payment);
         if (selectedPayments.length === 0) {
-            alert('Por favor, selecione pelo menos uma forma de pagamento.');
+            alert('Por favor, selecione uma forma de pagamento.');
             return;
         }
-        
-        // Montar mensagem para WhatsApp
-        let totalItems = 0;
-        cart.forEach(item => totalItems += item.quantity);
+
+        let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
         const useComboPrice = totalItems >= comboItems;
         const totalValue = useComboPrice ? totalItems * priceCombo : totalItems * priceUnit;
 
-        let message = `Olá, HS Cozinha Caseira! Gostaria de fazer um novo pedido:\n\n`;
-        message += `========================\n`;
-        message += `*DADOS PARA ENTREGA:*\n`;
-        message += `*Nome:* ${nome}\n`;
-        message += `*Endereço:* ${endereco}, ${complemento}\n`;
-        message += `========================\n`;
-        message += `*MEU PEDIDO:*\n`;
-        
+        // Monta a mensagem para o WhatsApp
+        let message = `Olá, HS Cozinha Caseira! Gostaria de fazer um novo pedido:\n\n`
+            + `========================\n`
+            + `*DADOS PARA ENTREGA:*\n`
+            + `*Nome:* ${document.getElementById('nome').value}\n`
+            + `*Endereço:* ${document.getElementById('endereco').value}, ${document.getElementById('complemento').value}\n`
+            + `========================\n`
+            + `*MEU PEDIDO:*\n`;
+
         cart.forEach(item => {
             message += `- ${item.quantity}x ${item.name}\n`;
+            if (item.note) message += `  (Obs: ${item.note})\n`;
         });
         
-        message += `\n*Total de Itens:* ${totalItems}\n`;
-        message += `*Valor Total:* R$ ${totalValue.toFixed(2)} ${useComboPrice ? '(Valor com desconto do combo)' : ''}\n`;
-        message += `========================\n`;
-        message += `*FORMA DE PAGAMENTO:*\n${selectedPayments.join(' e ')}\n`;
+        message += `\n*Total de Itens:* ${totalItems}\n`
+            + `*Valor Total:* R$ ${totalValue.toFixed(2)} ${useComboPrice ? '(Valor com desconto do combo)' : ''}\n`
+            + `========================\n`
+            + `*FORMA DE PAGAMENTO:*\n${selectedPayments.join(' e ')}\n`;
 
         if (selectedPayments.includes('Dinheiro')) {
             const valorDinheiro = parseFloat(document.getElementById('valor-dinheiro').value);
             if (valorDinheiro >= totalValue) {
-                const troco = valorDinheiro - totalValue;
                 message += `(Troco para: R$ ${valorDinheiro.toFixed(2)})\n`;
-                message += `(Valor do troco: R$ ${troco.toFixed(2)})\n`;
             }
         }
         
-        const encodedMessage = encodeURIComponent(message);
-        window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+        // Abre o WhatsApp
+        window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
         
-        // Lógica para enviar para a planilha (POST request)
-        // ... (o código para o POST pode ser adicionado aqui) ...
-        
-        // Mensagem de agradecimento
-        const hour = new Date().getHours();
-        let greeting = "bom dia";
-        if (hour >= 12 && hour < 18) greeting = "boa tarde";
-        if (hour >= 18 || hour < 5) greeting = "boa noite";
-
-        const thankYouMessage = `Olá, ${nome}, ${greeting}! A HS COZINHA CASEIRA agradece seu pedido. Ele já consta em nosso sistema e retornaremos o mais breve possível. Qualquer dúvida, estamos à disposição!`;
-        const encodedThankYouMessage = encodeURIComponent(thankYouMessage);
-        
-        setTimeout(() => {
-             window.open(`https://wa.me/${telefone}?text=${encodedThankYouMessage}`, '_blank');
-        }, 2000); // Abre após 2 segundos para não colidir com a primeira janela
-
+        // ... (Futuramente, adicione aqui a lógica de POST para o script) ...
     });
 
-    // Carregar o cardápio ao iniciar a página
     document.addEventListener('DOMContentLoaded', fetchMenuData);
     </script>
 </body>
 </html>
-
-
