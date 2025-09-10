@@ -5,7 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HS Cozinha Caseira - Cardápio</title>
     <style>
-        body{font-family:'Segoe UI',sans-serif;background-color:#f8f9fa;margin:0;color:#333}.container{max-width:1200px;margin:20px auto;padding:0 15px}header{text-align:center;padding-bottom:20px;border-bottom:2px solid #dee2e6;margin-bottom:20px}header h1{color:#4CAF50;font-size:2.5em;margin:0}header p{color:#6c757d;font-size:1.1em}.menu-options{text-align:center;margin-bottom:30px;padding:10px 0;background:#fff;border-radius:25px;box-shadow:0 2px 10px rgba(0,0,0,0.05)}.menu-options button{padding:10px 20px;margin:5px;border:1px solid #4CAF50;border-radius:20px;background-color:#fff;color:#4CAF50;cursor:pointer;transition:all .3s ease;font-size:1em}.menu-options button:hover,.menu-options button.active{background-color:#4CAF50;color:#fff}#menu-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:25px}.menu-item-card{background-color:#fff;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,0.08);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s}.menu-item-card:hover{transform:translateY(-5px)}.menu-item-card img{width:100%;height:200px;object-fit:cover;border-bottom:1px solid #eee}.item-content{padding:20px;flex-grow:1;display:flex;flex-direction:column}.item-content h3{margin:0 0 10px;color:#343a40}.item-content p{color:#6c757d;flex-grow:1;margin-bottom:15px;font-size:.9em}.price{font-size:1.5em;font-weight:700;color:#28a745}.stock-info{font-size:.9em;padding:3px 8px;border-radius:10px}.stock-info.available{background-color:#d4edda;color:#155724}.stock-info.on-order{background-color:#fff3cd;color:#856404}.item-footer{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.item-personalization{width:100%;padding:8px;border:1px solid #ddd;border-radius:5px;margin-bottom:15px;font-size:.9em}.quantity-control{display:flex;align-items:center;gap:10px;margin-bottom:15px}.quantity-control button{background-color:#eee;border:none;border-radius:50%;width:30px;height:30px;font-size:1.2em;cursor:pointer}.quantity-control span{font-size:1.2em;font-weight:700}.add-to-cart-btn{width:100%;padding:12px;background-color:#28a745;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:1em;font-weight:700;transition:background-color .2s}.add-to-cart-btn:hover{background-color:#218838}.order-and-form-section{background-color:#fff;padding:30px;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,0.08);margin-top:40px}.order-and-form-section h2{text-align:center;color:#4CAF50;margin-top:0}#order-list .order-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eee}.order-item-details{font-size:.9em}.order-item-note{font-size:.8em;color:#888;padding-left:15px}#order-total{text-align:right;font-size:1.5em;font-weight:700;margin-top:20px}.form-section label{display:block;margin-bottom:5px;font-weight:700}.form-section input,.form-section textarea{width:100%;padding:10px;margin-bottom:15px;border:1px solid #ccc;border-radius:4px;box-sizing:border-box}.payment-options{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:15px}.payment-options button{flex-grow:1;padding:10px 15px;border:1px solid #ccc;background-color:#f9f9f9;border-radius:5px;cursor:pointer}.payment-options button.selected{background-color:#4CAF50;color:#fff;border-color:#4CAF50}#pix-info,#troco-info{background-color:#e9ecef;padding:15px;border-radius:5px;margin-top:10px}#submit-order{display:block;width:100%;padding:15px;margin-top:20px;background-color:#25d366;color:#fff;border:none;border-radius:8px;font-size:1.2em;font-weight:700;cursor:pointer;text-align:center}.popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.6);display:flex;justify-content:center;align-items:center;z-index:1000;visibility:hidden;opacity:0;transition:opacity .3s,visibility .3s}.popup-overlay.show{visibility:visible;opacity:1}.popup{background-color:#fff;padding:30px 40px;border-radius:8px;text-align:center}
+        body{font-family:'Segoe UI',sans-serif;background-color:#f8f9fa;margin:0;color:#333}
+        .container{max-width:1200px;margin:20px auto;padding:0 15px}
+        header{text-align:center;padding-bottom:20px;border-bottom:1px solid #eee}
+        .menu-options{display:flex;gap:10px;justify-content:center;margin:10px 0}
+        #category-filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:25px}
+        .menu-item-card{background:#fff;border-radius:10px;box-shadow:0 2px 8px #ddd;display:flex;flex-direction:column;align-items:center;padding:20px;margin:15px;max-width:400px}
+        .menu-item-card img{width:100%;max-width:400px;height:auto;border-radius:8px;margin-bottom:10px}
+        .item-content{width:100%}
+        .item-footer{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+        .price{font-weight:bold;color:#28a745}
+        .stock-info{font-size:0.9em;padding:2px 8px;border-radius:6px}
+        .available{background:#e7fbe7;color:#1e7e34}
+        .on-order{background:#fff3cd;color:#856404}
+        .item-personalization{width:100%;margin:8px 0;padding:8px;font-size:1em}
+        .quantity-control{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+        .quantity-btn{width:32px;height:32px;font-size:1.2em;cursor:pointer;background:#eee;border:none;border-radius:5px;transition: background 0.2s}
+        .quantity-btn:hover{background:#ddd}
+        .add-to-cart-btn{background:#28a745;color:#fff;padding:10px 15px;border:none;border-radius:5px;cursor:pointer;font-weight:bold;margin-top:5px}
+        .add-to-cart-btn:hover{background:#218838}
+        .order-and-form-section{display:flex;flex-wrap:wrap;gap:40px;margin-top:30px}
+        .order-section,.form-section{background:#fff;padding:20px;border-radius:10px;box-shadow:0 1px 6px #eee;min-width:320px;flex:1}
+        .order-item{display:flex;justify-content:space-between;align-items:flex-start;margin:10px 0;padding-bottom:10px;border-bottom:1px solid #eee}
+        .order-item-details{max-width:70%}
+        .order-item-note{font-size:0.9em;color:#888;margin-top:3px}
+        #order-total{font-size:1.2em;margin-top:10px}
+        label{display:block;margin-top:15px;margin-bottom:5px}
+        input[type="text"], input[type="tel"], input[type="number"], textarea{width:100%;padding:8px;border-radius:5px;border:1px solid #ccc;font-size:1em;margin-bottom:8px}
+        textarea{resize:vertical}
+        .payment-options{display:flex;gap:10px;margin-bottom:10px}
+        .payment-options button{padding:8px 18px;border:none;border-radius:6px;background:#eee;cursor:pointer;font-weight:bold}
+        .payment-options button.selected{background:#28a745;color:#fff}
+        #submit-order{background:#007bff;color:#fff;padding:12px 20px;border:none;border-radius:8px;font-size:1.1em;font-weight:bold;cursor:pointer;margin-top:18px;transition:background 0.2s}
+        #submit-order:hover{background:#0056b3}
+        .popup-overlay{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.2);z-index:99}
+        .popup-overlay.show{display:flex;align-items:center;justify-content:center}
+        .popup{background:#fff;padding:25px 40px;border-radius:10px;font-size:1.2em;box-shadow:0 2px 10px #ccc}
+        @media (max-width: 900px){.order-and-form-section{flex-direction:column}}
+        @media (max-width: 600px){.container{padding:0 5px}.menu-item-card{padding:12px;margin:8px}}
     </style>
 </head>
 <body>
@@ -21,8 +58,7 @@
             <button id="btn-all-items" class="active" data-category="all">Todos os Itens</button>
             <button id="btn-pronta-entrega">Pronta Entrega</button>
         </div>
-        <div class="menu-options" id="category-filters">
-            </div>
+        <div class="menu-options" id="category-filters"></div>
 
         <section id="menu-items">
             <p>Carregando cardápio...</p>
@@ -45,7 +81,7 @@
                     <label for="complemento">Complemento (Nº, Apto, Bloco) *</label>
                     <input type="text" id="complemento" required>
                     <label for="telefone">Telefone Celular (com DDD) *</label>
-                    <input type="tel" id="telefone" placeholder="11999838162" required>
+                    <input type="tel" id="telefone" placeholder="11999838162" required pattern="^\d{10,11}$" title="Digite apenas números, com DDD. Ex: 11999838162">
                     <label for="observacoes">Observações Gerais do Pedido (Opcional)</label>
                     <textarea id="observacoes" maxlength="150" placeholder="Ex: Deixar na portaria..."></textarea>
                     <label>Forma de Pagamento *</label>
@@ -83,7 +119,6 @@
         try {
             const response = await fetch(`${googleAppsScriptUrl}?action=getMenu`);
             if (!response.ok) throw new Error('Falha na resposta da rede.');
-            
             const data = await response.json();
             if (data.error) throw new Error(data.message);
 
@@ -93,7 +128,7 @@
 
         } catch (error) {
             console.error("Erro ao carregar cardápio:", error);
-            document.getElementById('menu-items').innerHTML = `<p style="color:red;">Não foi possível carregar o cardápio. Verifique se a URL do script está correta e se ele foi implantado corretamente. Erro: ${error.message}</p>`;
+            document.getElementById('menu-items').innerHTML = `<p style="color:red;">Não foi possível carregar o cardápio. Verifique se a URL do script está correta e se ele foi implantado corretamente.</p>`;
         } finally {
             document.getElementById('loading-popup').classList.remove('show');
         }
@@ -232,13 +267,15 @@
 
     document.querySelector('.menu-options').addEventListener('click', handleFilterClick);
     document.getElementById('category-filters').addEventListener('click', handleFilterClick);
-    
+
+    // Exclusividade dos botões de pagamento
     document.querySelectorAll('.payment-options button').forEach(button => {
         button.addEventListener('click', (e) => {
-            e.target.classList.toggle('selected');
+            document.querySelectorAll('.payment-options button').forEach(b => b.classList.remove('selected'));
+            e.target.classList.add('selected');
             const paymentType = e.target.dataset.payment;
-            document.getElementById('pix-info').style.display = document.querySelector('[data-payment="PIX"].selected') ? 'block' : 'none';
-            document.getElementById('troco-info').style.display = document.querySelector('[data-payment="Dinheiro"].selected') ? 'block' : 'none';
+            document.getElementById('pix-info').style.display = paymentType === 'PIX' ? 'block' : 'none';
+            document.getElementById('troco-info').style.display = paymentType === 'Dinheiro' ? 'block' : 'none';
         });
     });
 
@@ -253,9 +290,17 @@
             alert('Seu carrinho está vazio.');
             return;
         }
-        const selectedPayments = [...document.querySelectorAll('.payment-options button.selected')].map(b => b.dataset.payment);
+        const selectedButton = document.querySelector('.payment-options button.selected');
+        const selectedPayments = selectedButton ? [selectedButton.dataset.payment] : [];
         if (selectedPayments.length === 0) {
             alert('Por favor, selecione uma forma de pagamento.');
+            return;
+        }
+        // Telefone: validação extra
+        const telefone = document.getElementById('telefone').value.trim();
+        if (!telefone.match(/^\d{10,11}$/)) {
+            alert('Digite o telefone celular corretamente, apenas números com DDD. Ex: 11999838162');
+            document.getElementById('telefone').focus();
             return;
         }
 
@@ -284,7 +329,7 @@
 
         if (selectedPayments.includes('Dinheiro')) {
             const valorDinheiro = parseFloat(document.getElementById('valor-dinheiro').value);
-            if (valorDinheiro >= totalValue) {
+            if (!isNaN(valorDinheiro) && valorDinheiro >= totalValue) {
                 message += `(Troco para: R$ ${valorDinheiro.toFixed(2)})\n`;
             }
         }
@@ -294,26 +339,30 @@
         
         // Lógica para enviar para a planilha (POST request)
         // ... (o código para o POST pode ser adicionado aqui) ...
-        
+        // Exemplo:
+        // fetch(googleAppsScriptUrl, {
+        //     method: "POST",
+        //     body: JSON.stringify({pedido: message}),
+        //     headers: {"Content-Type": "application/json"}
+        // });
+
         // Mensagem de agradecimento
         const hour = new Date().getHours();
         let greeting = "bom dia";
         if (hour >= 12 && hour < 18) greeting = "boa tarde";
         if (hour >= 18 || hour < 5) greeting = "boa noite";
+        const nome = document.getElementById('nome').value;
 
-        const thankYouMessage = `Olá, ${nome}, ${greeting}! A HS COZINHA CASEIRA agradece seu pedido. Ele já consta em nosso sistema e retornaremos o mais breve possível. Qualquer dúvida, estamos à disposição!`;
+        const thankYouMessage = `Olá, ${nome}, ${greeting}! A HS COZINHA CASEIRA agradece seu pedido. Ele já consta em nosso sistema e retornaremos o mais breve possível. Qualquer dúvida, estamos à disposição.`;
         const encodedThankYouMessage = encodeURIComponent(thankYouMessage);
-        
+
         setTimeout(() => {
-             window.open(`https://wa.me/${telefone}?text=${encodedThankYouMessage}`, '_blank');
+            window.open(`https://wa.me/${telefone}?text=${encodedThankYouMessage}`, '_blank');
         }, 2000); // Abre após 2 segundos para não colidir com a primeira janela
 
-    });
-        
     });
 
     document.addEventListener('DOMContentLoaded', fetchMenuData);
     </script>
 </body>
 </html>
-
