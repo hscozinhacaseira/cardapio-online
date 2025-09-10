@@ -292,10 +292,28 @@
         // Abre o WhatsApp
         window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
         
-        // ... (Futuramente, adicione aqui a lógica de POST para o script) ...
+        // Lógica para enviar para a planilha (POST request)
+        // ... (o código para o POST pode ser adicionado aqui) ...
+        
+        // Mensagem de agradecimento
+        const hour = new Date().getHours();
+        let greeting = "bom dia";
+        if (hour >= 12 && hour < 18) greeting = "boa tarde";
+        if (hour >= 18 || hour < 5) greeting = "boa noite";
+
+        const thankYouMessage = `Olá, ${nome}, ${greeting}! A HS COZINHA CASEIRA agradece seu pedido. Ele já consta em nosso sistema e retornaremos o mais breve possível. Qualquer dúvida, estamos à disposição!`;
+        const encodedThankYouMessage = encodeURIComponent(thankYouMessage);
+        
+        setTimeout(() => {
+             window.open(`https://wa.me/${telefone}?text=${encodedThankYouMessage}`, '_blank');
+        }, 2000); // Abre após 2 segundos para não colidir com a primeira janela
+
+    });
+        
     });
 
     document.addEventListener('DOMContentLoaded', fetchMenuData);
     </script>
 </body>
 </html>
+
